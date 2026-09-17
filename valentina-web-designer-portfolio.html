@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Valentina Rodríguez — Web Designer specializing in e-commerce stores and landing pages.">
+  <title>Valentina Rodríguez — Web Designer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,0,9..144,400;1,0,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ink:#221D18;
+      --ink-soft:#4a4239;
+      --stone:#ECE5D6;
+      --stone-deep:#E1D8C4;
+      --paper:#F6F2E9;
+      --sage:#4F5D3F;
+      --sage-deep:#3B4730;
+      --clay:#A24632;
+      --gold:#B5872F;
+      --tile-base:#A24632;
+      --tile-accent:#B5872F;
+      --grout:rgba(34,29,24,.16);
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      background:var(--paper);
+      color:var(--ink);
+      font-family:"Work Sans",sans-serif;
+      line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    @media (prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *{animation:none!important;transition:none!important}
+    }
+
+    h1,h2,h3{
+      font-family:"Fraunces",serif;
+      font-weight:500;
+      line-height:1.08;
+      margin:0;
+      color:var(--ink);
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 28px}
+
+    .eyebrow{
+      font-family:"IBM Plex Mono",monospace;
+      text-transform:uppercase;
+      letter-spacing:.12em;
+      font-size:.72rem;
+      color:var(--sage-deep);
+      font-weight:500;
+    }
+
+    .azulejo{
+      background-color:var(--tile-base);
+      background-image:
+        linear-gradient(var(--grout) 1px,transparent 1px),
+        linear-gradient(90deg,var(--grout) 1px,transparent 1px),
+        radial-gradient(circle at center,var(--tile-accent) 0 26%,transparent 27%),
+        conic-gradient(from 45deg,transparent 0 90deg,rgba(246,242,233,.14) 90deg 180deg,transparent 180deg 270deg,rgba(246,242,233,.14) 270deg 360deg);
+      background-size:var(--tile-size,56px) var(--tile-size,56px);
+    }
+
+    .azulejo-thin{--tile-size:26px}
+
+    /* Navigation */
+    .site-header{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(246,242,233,.92);
+      backdrop-filter:blur(6px);
+      border-bottom:1px solid var(--stone-deep);
+    }
+
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      max-width:var(--max);
+      margin:0 auto;
+    }
+
+    .nav-name{
+      font-family:"Fraunces",serif;
+      font-size:1.05rem;
+      font-weight:600;
+    }
+
+    .nav-links{
+      display:flex;
+      gap:28px;
+      list-style:none;
+      margin:0;
+      padding:0;
+    }
+
+    .nav-links a{
+      text-decoration:none;
+      font-size:.88rem;
+      color:var(--ink-soft);
+      border-bottom:1px solid transparent;
+      padding-bottom:2px;
+      transition:.2s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible{
+      color:var(--clay);
+      border-color:var(--clay);
+    }
+
+    /* Hero */
+    .hero-band-top{height:14px}
+    .hero{padding:64px 0 56px}
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:56px;
+      align-items:center;
+    }
+
+    .hero h1{
+      font-size:clamp(2.2rem,4vw,3.4rem);
+      margin-top:14px;
+    }
+
+    .hero h1 em{
+      font-style:italic;
+      color:var(--clay);
+    }
+
+    .hero .lede{
+      font-size:1.08rem;
+      color:var(--ink-soft);
+      max-width:48ch;
+      margin-top:20px;
+    }
+
+    .cta-row{
+      display:flex;
+      gap:16px;
+      align-items:center;
+      margin-top:30px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-block;
+      font-family:"IBM Plex Mono",monospace;
+      font-size:.82rem;
+      text-transform:uppercase;
+      letter-spacing:.06em;
+      text-decoration:none;
+      padding:14px 26px;
+      border-radius:2px;
+      border:1px solid var(--ink);
+      transition:transform .15s,background .2s,color .2s;
+    }
+
+    .btn-solid{
+      background:var(--sage);
+      color:var(--paper);
+      border-color:var(--sage);
+    }
+
+    .btn-solid:hover{
+      background:var(--sage-deep);
+      transform:translateY(-1px);
+    }
+
+    .btn-ghost:hover{
+      background:var(--ink);
+      color:var(--paper);
+    }
+
+    .photo-frame{
+      position:relative;
+      margin-inline:auto;
+      width:min(320px,90%);
+      aspect-ratio:3/4;
+      border-radius:160px 160px 14px 14px;
+      padding:12px;
+      background:var(--gold);
+    }
+
+    .photo-frame-inner{
+      width:100%;
+      height:100%;
+      border-radius:148px 148px 6px 6px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:24px;
+      color:var(--paper);
+    }
+
+    .photo-frame-inner .eyebrow{
+      color:var(--paper);
+      opacity:.85;
+    }
+
+    .photo-frame-inner p{
+      font-family:"IBM Plex Mono",monospace;
+      font-size:.78rem;
+      margin-top:8px;
+    }
+
+    /* Sections */
+    section{padding:76px 0}
+
+    .section-head{
+      max-width:62ch;
+      margin-bottom:44px;
+    }
+
+    .section-head h2{
+      font-size:clamp(1.7rem,3vw,2.3rem);
+      margin-top:10px;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:.4fr .6fr;
+      gap:48px;
+    }
+
+    .about-grid p{
+      color:var(--ink-soft);
+      font-size:1.02rem;
+      max-width:62ch;
+      margin:0;
+    }
+
+    .about-grid p + p{margin-top:16px}
+
+    /* Services */
+    .services-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:2px;
+      background:var(--stone-deep);
+      border:1px solid var(--stone-deep);
+    }
+
+    .service-tile{
+      background:var(--paper);
+      padding:30px 26px;
+      min-height:190px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+    }
+
+    .service-mark{
+      width:26px;
+      height:26px;
+      background:var(--sage);
+      border-radius:2px;
+      transform:rotate(45deg);
+      margin:2px 0 5px 2px;
+    }
+
+    .service-tile h3{
+      font-size:1.08rem;
+      font-weight:600;
+    }
+
+    .service-tile p{
+      color:var(--ink-soft);
+      font-size:.92rem;
+      margin:0;
+    }
+
+    /* Portfolio */
+    .portfolio-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:22px;
+    }
+
+    .project{
+      border:1px solid var(--stone-deep);
+      background:var(--paper);
+      padding:30px;
+      transition:transform .2s,box-shadow .2s;
+    }
+
+    .project:hover{
+      transform:translateY(-3px);
+      box-shadow:0 10px 30px rgba(34,29,24,.08);
+    }
+
+    .project-number{
+      font-family:"Fraunces",serif;
+      font-size:2.2rem;
+      color:var(--clay);
+    }
+
+    .project-type{
+      font-family:"IBM Plex Mono",monospace;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.7rem;
+      color:var(--sage-deep);
+      margin-top:12px;
+    }
+
+    .project h3{
+      font-size:1.35rem;
+      margin-top:8px;
+    }
+
+    .project p{
+      color:var(--ink-soft);
+      font-size:.92rem;
+      margin:14px 0 20px;
+    }
+
+    .project-link{
+      font-family:"IBM Plex Mono",monospace;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.05em;
+      color:var(--clay);
+      text-decoration:none;
+      border-bottom:1px solid var(--clay);
+      padding-bottom:2px;
+    }
+
+    /* Experience */
+    .experience-item{
+      display:grid;
+      grid-template-columns:180px 1fr;
+      gap:34px;
+      padding:32px 0;
+      border-top:1px solid var(--stone-deep);
+    }
+
+    .experience-item:last-child{border-bottom:1px solid var(--stone-deep)}
+
+    .experience-date{
+      font-family:"IBM Plex Mono",monospace;
+      font-size:.76rem;
+      color:var(--sage-deep);
+    }
+
+    .experience-item h3{font-size:1.25rem}
+    .experience-company{color:var(--clay);margin-top:4px;font-size:.92rem}
+
+    .experience-item ul{
+      color:var(--ink-soft);
+      padding-left:20px;
+      margin:14px 0 0;
+    }
+
+    .experience-item li{margin-bottom:8px}
+
+    /* Tools */
+    .tool-group{margin-bottom:24px}
+    .tool-group h4{
+      font-family:"IBM Plex Mono",monospace;
+      font-size:.78rem;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      color:var(--sage-deep);
+      margin:0 0 12px;
+      font-weight:500;
+    }
+
+    .tool-chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+    }
+
+    .tool-chips span{
+      font-size:.86rem;
+      padding:7px 14px;
+      border:1px solid var(--stone-deep);
+      border-radius:20px;
+      background:var(--paper);
+    }
+
+    /* Education & languages */
+    .two-column{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:48px;
+    }
+
+    .info-card{
+      border-top:1px solid var(--stone-deep);
+      padding-top:22px;
+    }
+
+    .info-card h3{font-size:1.15rem}
+    .info-card p{color:var(--ink-soft);margin:7px 0}
+
+    /* Contact */
+    .contact{
+      color:var(--paper);
+      text-align:center;
+      padding:88px 0;
+    }
+
+    .contact .eyebrow{color:#DED0B4}
+    .contact h2{
+      color:var(--paper);
+      font-size:clamp(1.9rem,4vw,2.7rem);
+      margin-top:14px;
+    }
+
+    .contact p{
+      color:rgba(246,242,233,.85);
+      max-width:50ch;
+      margin:16px auto 0;
+    }
+
+    .contact-email{
+      margin-top:24px;
+      font-family:"IBM Plex Mono",monospace;
+      font-size:1rem;
+    }
+
+    .contact-email a{
+      color:var(--paper);
+      text-decoration:underline;
+      text-underline-offset:4px;
+    }
+
+    .contact .cta-row{
+      justify-content:center;
+      margin-top:30px;
+    }
+
+    .contact .btn-ghost{
+      border-color:var(--paper);
+      color:var(--paper);
+    }
+
+    .contact .btn-ghost:hover{
+      background:var(--paper);
+      color:var(--ink);
+    }
+
+    .contact .btn-solid{
+      background:var(--paper);
+      color:var(--ink);
+      border-color:var(--paper);
+    }
+
+    .contact .btn-solid:hover{
+      background:transparent;
+      color:var(--paper);
+    }
+
+    .site-footer{
+      padding:26px 28px;
+      text-align:center;
+      font-family:"IBM Plex Mono",monospace;
+      font-size:.75rem;
+      color:var(--ink-soft);
+      background:var(--paper);
+    }
+
+    [data-reveal]{
+      opacity:0;
+      transform:translateY(14px);
+      transition:opacity .6s ease,transform .6s ease;
+    }
+
+    [data-reveal].is-visible{
+      opacity:1;
+      transform:none;
+    }
+
+    @media(max-width:860px){
+      .hero-grid,
+      .about-grid,
+      .two-column{grid-template-columns:1fr}
+
+      .hero .photo-frame{
+        order:-1;
+        width:220px;
+      }
+
+      .services-grid{grid-template-columns:1fr 1fr}
+      .portfolio-grid{grid-template-columns:1fr}
+      .experience-item{grid-template-columns:1fr;gap:10px}
+      .nav-links{display:none}
+    }
+
+    @media(max-width:520px){
+      .services-grid{grid-template-columns:1fr}
+      .wrap{padding:0 20px}
+      .nav{padding:16px 20px}
+      .project{padding:24px}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <nav class="nav">
+      <div class="nav-name">Valentina Rodríguez</div>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#work">Portfolio</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="azulejo hero-band-top" style="--tile-size:34px;"></div>
+
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Web Designer · E-commerce · Landing Pages</p>
+        <h1>Thoughtful websites with <em>clean visual details.</em></h1>
+        <p class="lede">
+          I build and maintain e-commerce stores and landing pages for real businesses,
+          combining visual design, clear communication, attention to detail, and AI-assisted development.
+        </p>
+
+        <div class="cta-row">
+          <a class="btn btn-solid" href="#work">View my work</a>
+          <a class="btn btn-ghost" href="#contact">Let's talk</a>
+        </div>
+      </div>
+
+      <div class="photo-frame azulejo" style="--tile-size:20px;">
+        <div class="photo-frame-inner">
+          <div>
+            <p class="eyebrow">Web Designer</p>
+            <p>E-commerce · Landing Pages · WordPress · GitHub Pages</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap about-grid">
+      <div data-reveal>
+        <p class="eyebrow">About me</p>
+      </div>
+
+      <div data-reveal>
+        <p>
+          I am a Public Relations professional and Executive Assistant with hands-on experience
+          building and maintaining live e-commerce stores for real clients. My work includes product
+          setup with multiple variants, catalogs, pricing, collections, checkout flows, and WhatsApp support.
+        </p>
+        <p>
+          I also create websites and landing pages with AI-assisted development using Claude Code and GitHub,
+          carefully reviewing the generated output before publishing. My background in advertising gives me
+          a strong eye for visual finishing, while my administrative experience brings organization,
+          precision, and reliable execution to every project.
+        </p>
+        <p>
+          Based in Ubatuba, São Paulo, I am available for fully remote, full-time work.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Services</p>
+        <h2>What I can build and support.</h2>
+      </div>
+
+      <div class="services-grid" data-reveal>
+        <div class="service-tile">
+          <div class="service-mark"></div>
+          <h3>E-commerce stores</h3>
+          <p>Product catalogs, variants, images, pricing, collections, checkout and customer contact flows for live online stores.</p>
+        </div>
+
+        <div class="service-tile">
+          <div class="service-mark"></div>
+          <h3>Landing pages</h3>
+          <p>Focused pages designed around a clear offer, strong structure, FAQ sections, guarantees and conversion-oriented content.</p>
+        </div>
+
+        <div class="service-tile">
+          <div class="service-mark"></div>
+          <h3>Website design</h3>
+          <p>Homepage concepts, navigation structures and visual improvements with attention to clarity, usability and presentation.</p>
+        </div>
+
+        <div class="service-tile">
+          <div class="service-mark"></div>
+          <h3>AI-assisted development</h3>
+          <p>HTML and CSS pages developed with Claude Code and GitHub, with human review and refinement before publication.</p>
+        </div>
+
+        <div class="service-tile">
+          <div class="service-mark"></div>
+          <h3>WordPress support</h3>
+          <p>Content management, visual updates and SEO improvements for websites that need consistent, organized maintenance.</p>
+        </div>
+
+        <div class="service-tile">
+          <div class="service-mark"></div>
+          <h3>Visual content</h3>
+          <p>Graphic design, image and video editing, and social media content created with a strong focus on visual consistency.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="azulejo azulejo-thin"></div>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Selected portfolio</p>
+        <h2>Real stores, pages and web projects.</h2>
+      </div>
+
+      <div class="portfolio-grid">
+
+        <article class="project" data-reveal>
+          <div class="project-number">01</div>
+          <div class="project-type">E-commerce · Nuvemshop</div>
+          <h3>La Gitana</h3>
+          <p>
+            Live e-commerce store for spiritual wellness products, including an extensive catalog
+            with dozens of scent variants per product.
+          </p>
+          <a class="project-link" href="https://www.lagitanaloja.com/" target="_blank" rel="noopener noreferrer">Visit website ↗</a>
+        </article>
+
+        <article class="project" data-reveal>
+          <div class="project-number">02</div>
+          <div class="project-type">E-commerce · Nuvemshop</div>
+          <h3>Caminho</h3>
+          <p>
+            Live e-commerce store for handmade jewelry, organized by product categories including
+            necklaces, bracelets and earrings.
+          </p>
+          <a class="project-link" href="https://www.caminholoja.com/" target="_blank" rel="noopener noreferrer">Visit website ↗</a>
+        </article>
+
+        <article class="project" data-reveal>
+          <div class="project-number">03</div>
+          <div class="project-type">Website · Tiendup</div>
+          <h3>Raíz Lunar</h3>
+          <p>
+            Booking and sales website for astrology and tarot sessions, built on the Tiendup platform.
+          </p>
+          <a class="project-link" href="https://raizlunar.tiendup.com/" target="_blank" rel="noopener noreferrer">Visit website ↗</a>
+        </article>
+
+        <article class="project" data-reveal>
+          <div class="project-number">04</div>
+          <div class="project-type">Landing Page · Sales Funnel</div>
+          <h3>Kit Empreendedora Digital</h3>
+          <p>
+            Own digital-product landing page and sales funnel with an offer section, guarantee,
+            FAQ and checkout, designed with a mobile-first approach.
+          </p>
+          <a class="project-link" href="https://kitempreendedora.online/" target="_blank" rel="noopener noreferrer">Visit website ↗</a>
+        </article>
+
+        <article class="project" data-reveal>
+          <div class="project-number">05</div>
+          <div class="project-type">Web Design · GitHub</div>
+          <h3>YogaU Online Homepage Redesign</h3>
+          <p>
+            Homepage and navigation mockups developed with Claude Code and GitHub, exploring
+            multiple layout options and subpages.
+          </p>
+          <a class="project-link" href="https://valentinar-source.github.io/YogaUOnline-Test/" target="_blank" rel="noopener noreferrer">View project ↗</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Experience</p>
+        <h2>Design, digital work and detail-oriented execution.</h2>
+      </div>
+
+      <div class="experience-item" data-reveal>
+        <div class="experience-date">2019 — 2024<br>Argentina / Brazil</div>
+        <div>
+          <h3>Freelance Advertising — E-commerce & Social Media</h3>
+          <div class="experience-company">Independent</div>
+          <ul>
+            <li>Built and maintained live Nuvemshop and Tiendup stores for real clients.</li>
+            <li>Managed product variants, images, prices, collections, checkout and WhatsApp support.</li>
+            <li>Created and published a complete sales funnel for an original digital product.</li>
+            <li>Produced paid and organic content, including video, Reels and graphic design.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item" data-reveal>
+        <div class="experience-date">Oct 2025 — Aug 2026<br>Remote</div>
+        <div>
+          <h3>Executive Assistant</h3>
+          <div class="experience-company">YogaU Online / Age Strong for Life</div>
+          <ul>
+            <li>Created homepage and navigation mockups using Claude Code and GitHub.</li>
+            <li>Managed WordPress content and implemented SEO improvements.</li>
+            <li>Used Google Analytics to monitor channel performance and support decisions.</li>
+            <li>Identified a Keap platform bug and a geographic campaign-targeting discrepancy before they reached the paid audience.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="experience-item" data-reveal>
+        <div class="experience-date">2019 — 2021<br>Mar del Plata, Argentina</div>
+        <div>
+          <h3>Administrative Assistant</h3>
+          <div class="experience-company">Palacio Edén Condominium</div>
+          <ul>
+            <li>Organized documents and schedules for a lawyer, including appointments, hearings and client meetings.</li>
+            <li>Handled high-pressure situations while maintaining attention to detail and professional service.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tools">
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Tools & skills</p>
+        <h2>What I work with.</h2>
+      </div>
+
+      <div data-reveal>
+        <div class="tool-group">
+          <h4>E-commerce</h4>
+          <div class="tool-chips">
+            <span>Nuvemshop</span><span>Tiendup</span>
+          </div>
+        </div>
+
+        <div class="tool-group">
+          <h4>Web</h4>
+          <div class="tool-chips">
+            <span>HTML</span><span>CSS</span><span>WordPress</span><span>GitHub Pages</span>
+          </div>
+        </div>
+
+        <div class="tool-group">
+          <h4>AI-assisted development</h4>
+          <div class="tool-chips">
+            <span>Claude Code</span><span>GitHub</span>
+          </div>
+        </div>
+
+        <div class="tool-group">
+          <h4>Design & media</h4>
+          <div class="tool-chips">
+            <span>Canva</span><span>Adobe</span><span>Video Editing</span><span>Image Editing</span>
+          </div>
+        </div>
+
+        <div class="tool-group">
+          <h4>Analytics & marketing</h4>
+          <div class="tool-chips">
+            <span>Google Analytics</span><span>Paid Campaigns</span><span>Social Media</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head" data-reveal>
+        <p class="eyebrow">Education & certifications</p>
+        <h2>Professional background.</h2>
+      </div>
+
+      <div class="two-column" data-reveal>
+        <div class="info-card">
+          <h3>Hilet Institute</h3>
+          <p><strong>Technical Degree in Advertising</strong></p>
+          <p>2016 — 2019 · Mar del Plata, Buenos Aires, Argentina</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Pareto Talent Certificate</h3>
+          <p>10-day Executive Assistant Bootcamp.</p>
+          <p>Website, funnel and CRM structure in GoHighLevel, plus GHL and Zapier automations.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Automate to Accelerate Certificate</h3>
+          <p>AI Systems Architecture for Business — The Uncommon Business.</p>
+          <p>13-week program · Fall 2025.</p>
+        </div>
+
+        <div class="info-card">
+          <h3>Languages</h3>
+          <p>Spanish — Native</p>
+          <p>Portuguese — Intermediate</p>
+          <p>English — Intermediate (B1)</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="azulejo contact" id="contact" style="--tile-size:34px;">
+    <div class="wrap">
+      <p class="eyebrow">Get in touch</p>
+      <h2>Let's build something clear, useful and well-designed.</h2>
+      <p>
+        Available for remote full-time opportunities, e-commerce projects,
+        landing pages and website design support.
+      </p>
+
+      <p class="contact-email">
+        <a href="mailto:valentina.rodriguez@paretotalent.com">valentina.rodriguez@paretotalent.com</a>
+      </p>
+
+      <div class="cta-row">
+        <a class="btn btn-solid" href="mailto:valentina.rodriguez@paretotalent.com">Email me</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/valen-rodriguez" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    Valentina Rodríguez · Web Designer · E-commerce & Landing Pages · Ubatuba, Brazil · EN / ES / PT
+  </footer>
+
+  <script>
+    const revealEls = document.querySelectorAll("[data-reveal]");
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealEls.forEach(el => observer.observe(el));
+    } else {
+      revealEls.forEach(el => el.classList.add("is-visible"));
+    }
+  </script>
+</body>
+</html>
